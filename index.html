@@ -6,6 +6,108 @@
   <title>Snappaw | Adaptive Dogwear</title>
 
   <style>
+      .product-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 42px;
+  align-items: start;
+}
+
+.detail-image {
+  min-height: 620px;
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 22% 18%, rgba(182,138,99,0.5), transparent 24%),
+    linear-gradient(135deg, #ede3d8, #d6c5b3);
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.detail-info {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  padding: 34px;
+  box-shadow: var(--shadow);
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+.detail-price {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.detail-desc {
+  font-size: 17px;
+  margin-bottom: 28px;
+}
+
+.detail-options {
+  display: grid;
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.option-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.option-row button {
+  border: 1px solid var(--line);
+  background: #fbfaf8;
+  border-radius: 999px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.option-row button:hover {
+  border-color: var(--primary);
+}
+
+.detail-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.detail-list div {
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.product-view-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+@media (max-width: 900px) {
+  .product-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-image {
+    min-height: 360px;
+  }
+}
     :root {
       --bg: #f7f4ef;
       --card: #ffffff;
@@ -770,7 +872,9 @@
                 <p>Long-length adjustable dog jacket with multi-point fastening.</p>
                 <div class="price-row">
                   <span class="price">£48.00</span>
-                  <span class="small-link">View Product</span>
+                  <button class="small-link product-view-btn" onclick="showPage('product-detail')">
+  View Product
+</button>
                 </div>
               </div>
             </article>
@@ -1049,6 +1153,73 @@
         </div>
       </div>
     </section>
+
+    <section id="product-detail" class="page">
+  <div class="section">
+    <div class="container product-detail-grid">
+      <div class="detail-image">
+        <span class="product-badge">Adaptive Fit</span>
+        <div class="dog-shape"></div>
+      </div>
+
+      <div class="detail-info">
+        <button class="back-btn" onclick="showPage('products')">← Back to Products</button>
+
+        <p class="eyebrow">Snappaw Product</p>
+        <h1>Adaptive Growth Jacket</h1>
+
+        <p class="detail-price">£48.00</p>
+
+        <p class="detail-desc">
+          A long-length adjustable dog jacket designed for small-breed puppies.
+          The garment uses multi-point fastening and growth-friendly panels to support
+          comfort, movement and longer product use.
+        </p>
+
+        <div class="detail-options">
+          <div>
+            <strong>Size</strong>
+            <div class="option-row">
+              <button>XS</button>
+              <button>S</button>
+              <button>M</button>
+            </div>
+          </div>
+
+          <div>
+            <strong>Colour</strong>
+            <div class="option-row">
+              <button>Forest Green</button>
+              <button>Warm Beige</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" style="width:100%; margin-top:24px;">
+          Add to Bag
+        </button>
+
+        <div class="detail-list">
+          <div>
+            <strong>Key Features</strong>
+            <p>Adjustable chest fit, growth-friendly panels, lightweight structure.</p>
+          </div>
+
+          <div>
+            <strong>Material</strong>
+            <p>Softshell outer layer with stretch extension zones.</p>
+          </div>
+
+          <div>
+            <strong>Care</strong>
+            <p>Gentle machine wash. Air dry recommended.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
   </main>
 
   <footer>
