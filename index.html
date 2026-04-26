@@ -6,6 +6,197 @@
   <title>Snappaw | Adaptive Dogwear</title>
 
   <style>
+    .brand-hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 42px;
+  align-items: center;
+}
+
+.brand-hero p {
+  font-size: 17px;
+}
+
+.brand-hero-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 34px;
+  padding: 34px;
+  box-shadow: var(--shadow);
+}
+
+.brand-problem-section {
+  background: var(--soft);
+}
+
+.brand-insight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.brand-insight-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  padding: 26px;
+}
+
+.brand-insight-card span {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  margin-bottom: 18px;
+}
+
+.position-box {
+  height: 420px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  margin-top: 28px;
+  position: relative;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.04);
+}
+
+.position-box::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 42px;
+  bottom: 42px;
+  border-left: 1px solid var(--line);
+}
+
+.position-box::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 42px;
+  right: 42px;
+  border-top: 1px solid var(--line);
+}
+
+.axis-label {
+  position: absolute;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--muted);
+  background: white;
+  padding: 4px 8px;
+  z-index: 2;
+}
+
+.axis-label.top {
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.axis-label.bottom {
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.axis-label.left {
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.axis-label.right {
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.position-dot {
+  position: absolute;
+  right: 76px;
+  top: 86px;
+  background: var(--primary);
+  color: white;
+  padding: 14px 18px;
+  border-radius: 999px;
+  font-weight: 900;
+  z-index: 3;
+  box-shadow: var(--shadow);
+}
+
+.brand-values-section {
+  background: var(--soft);
+}
+
+.brand-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.brand-value-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  padding: 24px;
+}
+
+.prism-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.prism-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  padding: 24px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.04);
+}
+
+.brand-dark {
+  background: var(--primary);
+  color: white;
+  border-radius: 42px;
+  width: min(1180px, 94%);
+  margin: 40px auto;
+}
+
+.brand-dark .container {
+  padding: 70px 0;
+}
+
+.brand-dark h2 {
+  max-width: 900px;
+}
+
+.brand-dark p {
+  color: rgba(255,255,255,0.72);
+  max-width: 760px;
+}
+
+@media (max-width: 900px) {
+  .brand-hero,
+  .brand-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-insight-grid,
+  .brand-values-grid,
+  .prism-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .position-box {
+    height: 360px;
+  }
+}
       .product-detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1016,74 +1207,195 @@
 
     <!-- 3. 品牌页面 -->
     <section id="brand" class="page">
-      <div class="section">
-        <div class="container brand-grid">
-          <div>
-            <p class="eyebrow">Brand Story</p>
-            <h1>Responsible dogwear for longer companionship.</h1>
-            <p>
-              Snappaw challenges the idea that puppy clothing should be short-term, seasonal and disposable.
-              Our brand focuses on adjustable fit, structural practicality and calm premium design.
-            </p>
+  <div class="section">
+    <div class="container brand-hero">
+      <div>
+        <p class="eyebrow">Brand Story</p>
+        <h1>Snappaw is built for responsible companionship.</h1>
+        <p>
+          Snappaw is an adaptive dogwear brand designed for growing small-breed dogs and attentive urban pet owners.
+          Instead of treating dog clothing as short-term fashion, Snappaw focuses on fit, comfort, longevity and responsible care.
+        </p>
 
-            <div style="margin-top: 28px;" class="buttons">
-              <button class="btn btn-primary" onclick="showPage('products')">Explore Products</button>
-              <button class="btn btn-secondary" onclick="showPage('contact')">Contact Us</button>
-            </div>
-          </div>
-
-          <div class="brand-card">
-            <p class="eyebrow">Positioning</p>
-            <h2>Functional + Longevity-focused</h2>
-            <p>
-              Snappaw sits away from novelty-driven pet fashion. It is designed for attentive urban dog owners who want practical, reliable and more responsible pet apparel.
-            </p>
-          </div>
-        </div>
-
-        <div class="container brand-list">
-          <div class="brand-item">
-            <span class="number">01</span>
-            <div>
-              <h3>Adaptive Fit</h3>
-              <p>
-                Multi-point fastening helps one garment adapt across different body changes and growth stages.
-              </p>
-            </div>
-          </div>
-
-          <div class="brand-item">
-            <span class="number">02</span>
-            <div>
-              <h3>Anti-disposable Thinking</h3>
-              <p>
-                Snappaw reduces the need for frequent replacement by designing products with a longer use logic.
-              </p>
-            </div>
-          </div>
-
-          <div class="brand-item">
-            <span class="number">03</span>
-            <div>
-              <h3>Quiet Premium Style</h3>
-              <p>
-                The visual language is calm, minimal and functional rather than overly decorative or novelty-led.
-              </p>
-            </div>
-          </div>
-
-          <div class="brand-item">
-            <span class="number">04</span>
-            <div>
-              <h3>Responsible Guardianship</h3>
-              <p>
-                The brand speaks to pet owners who view care as long-term responsibility, not short-term consumption.
-              </p>
-            </div>
-          </div>
+        <div class="buttons" style="margin-top: 28px;">
+          <button class="btn btn-primary" onclick="showPage('products')">Explore Products</button>
+          <button class="btn btn-secondary" onclick="showPage('contact')">Join Product Testing</button>
         </div>
       </div>
-    </section>
+
+      <div class="brand-hero-card">
+        <span class="tag">Core Brand Idea</span>
+        <h2>Dogwear that grows with them.</h2>
+        <p>
+          Our product concept responds to a clear consumer issue: puppies grow quickly, but most dog clothes do not adapt.
+          Snappaw turns dogwear into a longer-term companion product.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section brand-problem-section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Brand Insight</p>
+        <h2>The problem is not only sizing. It is disposability.</h2>
+        <p>
+          Many dog garments are purchased for a short growth stage and then quickly replaced.
+          This creates frustration for owners, fit discomfort for dogs and unnecessary product waste.
+        </p>
+      </div>
+
+      <div class="brand-insight-grid">
+        <div class="brand-insight-card">
+          <span>01</span>
+          <h3>Fast puppy growth</h3>
+          <p>
+            Small-breed puppies can change shape quickly, making fixed-size garments difficult to use for long periods.
+          </p>
+        </div>
+
+        <div class="brand-insight-card">
+          <span>02</span>
+          <h3>Fit uncertainty</h3>
+          <p>
+            Online sizing can be confusing for owners, increasing the chance of returns and poor customer satisfaction.
+          </p>
+        </div>
+
+        <div class="brand-insight-card">
+          <span>03</span>
+          <h3>Short product life</h3>
+          <p>
+            Traditional dog clothing often becomes unsuitable before the material itself has reached the end of its useful life.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container brand-grid">
+      <div>
+        <p class="eyebrow">Brand Positioning</p>
+        <h2>Functional, calm and longevity-focused.</h2>
+        <p>
+          Snappaw positions itself away from novelty-led pet fashion. The brand is designed for owners who see pet care as a long-term responsibility rather than a seasonal purchase.
+        </p>
+
+        <div class="position-box">
+          <div class="axis-label top">Longevity-focused</div>
+          <div class="axis-label left">Aesthetic-driven</div>
+          <div class="axis-label right">Functional-driven</div>
+          <div class="axis-label bottom">Novelty-driven</div>
+
+          <div class="position-dot">Snappaw</div>
+        </div>
+      </div>
+
+      <div class="brand-card">
+        <p class="eyebrow">What makes Snappaw different?</p>
+        <h2>Adjustment is not a feature. It is the brand system.</h2>
+        <p>
+          The adjustable fit logic shapes the product, the communication, the customer experience and the sustainability message.
+          Snappaw is not simply selling dog clothing; it is selling reassurance, continuity and responsible ownership.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section brand-values-section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Brand Values</p>
+        <h2>Four values guide the Snappaw experience.</h2>
+      </div>
+
+      <div class="brand-values-grid">
+        <div class="brand-value-card">
+          <h3>Adaptive Fit</h3>
+          <p>
+            Products are designed to adjust across growth stages, supporting comfort and reducing replacement pressure.
+          </p>
+        </div>
+
+        <div class="brand-value-card">
+          <h3>Responsible Care</h3>
+          <p>
+            The brand speaks to owners who view pet clothing as part of practical care, not only visual styling.
+          </p>
+        </div>
+
+        <div class="brand-value-card">
+          <h3>Quiet Confidence</h3>
+          <p>
+            Snappaw uses a calm, premium and functional visual language rather than loud novelty-led pet fashion.
+          </p>
+        </div>
+
+        <div class="brand-value-card">
+          <h3>Longer Product Life</h3>
+          <p>
+            The product concept supports more considered consumption by extending the usefulness of each garment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container brand-prism-section">
+      <div class="section-head">
+        <p class="eyebrow">Brand Identity Prism</p>
+        <h2>A clear identity system for Snappaw.</h2>
+        <p>
+          The brand identity connects physical product features with emotional reassurance and responsible pet ownership.
+        </p>
+      </div>
+
+      <div class="prism-grid">
+        <div class="prism-card">
+          <h3>Physique</h3>
+          <p>Adjustable fastening, structured outerwear silhouette and growth-friendly panels.</p>
+        </div>
+
+        <div class="prism-card">
+          <h3>Personality</h3>
+          <p>Quiet, competent, reassuring and technically thoughtful.</p>
+        </div>
+
+        <div class="prism-card">
+          <h3>Culture</h3>
+          <p>Responsible guardianship, anti-disposable consumption and practical ethics.</p>
+        </div>
+
+        <div class="prism-card">
+          <h3>Relationship</h3>
+          <p>Long-term accompaniment rather than seasonal replacement.</p>
+        </div>
+
+        <div class="prism-card">
+          <h3>Reflection</h3>
+          <p>Attentive urban small-breed dog owners who value comfort and quality.</p>
+        </div>
+
+        <div class="prism-card">
+          <h3>Self-image</h3>
+          <p>“I am a responsible caregiver who makes thoughtful choices for my dog.”</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section brand-dark">
+    <div class="container">
+      <p class="eyebrow">Brand Promise</p>
+      <h2>Snappaw helps owners buy less often, choose more carefully and care more confidently.</h2>
+      <p>
+        By combining adaptive product design with a calm responsible brand identity, Snappaw creates a stronger emotional and functional reason for consumers to choose longer-lasting dogwear.
+      </p>
+    </div>
+  </div>
+</section>
 
     <!-- 4. 联系我们页面 -->
     <section id="contact" class="page">
