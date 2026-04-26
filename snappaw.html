@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snappaw | Adaptive Dogwear</title>
+
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --card: #ffffff;
+      --text: #1f1f1f;
+      --muted: #6f6a61;
+      --line: #ded8cf;
+      --primary: #2f3a33;
+      --accent: #b68a63;
+      --soft: #ebe3d8;
+      --dark: #151814;
+      --radius: 24px;
+      --shadow: 0 18px 42px rgba(0,0,0,0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font-family: inherit;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247, 244, 239, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      height: 74px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 24px;
+      letter-spacing: -0.04em;
+      cursor: pointer;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .nav-links button {
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2f3a33;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-links button:hover,
+.nav-links button.active {
+  color: #2f3a33;
+}
+
+    .nav-links button:hover,
+    .nav-links button.active {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      padding: 0;
+      border-radius: 0;
+      background: none;
+      color: #2f3a33 !important;
+    }
+
+    main {
+      min-height: calc(100vh - 74px);
+    }
+
+    .page {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      padding: 88px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.55);
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 78px);
+      line-height: 0.98;
+      letter-spacing: -0.07em;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-size: 22px;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      max-width: 620px;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: white;
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      background: white;
+      border-radius: 34px;
+      border: 1px solid var(--line);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .visual-box {
+      height: 430px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 22% 18%, rgba(182,138,99,0.5), transparent 24%),
+        linear-gradient(135deg, #ede3d8, #d6c5b3);
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .dog-shape {
+      width: 260px;
+      height: 180px;
+      background: var(--primary);
+      border-radius: 90px 90px 70px 70px;
+      position: relative;
+    }
+
+    .dog-shape::before {
+      content: "";
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      background: var(--primary);
+      position: absolute;
+      right: -42px;
+      top: -32px;
+    }
+
+    .dog-shape::after {
+      content: "";
+      position: absolute;
+      width: 62px;
+      height: 18px;
+      border-radius: 999px;
+      background: var(--accent);
+      left: 55px;
+      top: 76px;
+      box-shadow: 78px 0 0 var(--accent);
+    }
+
+    .floating-label {
+      position: absolute;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .label-one {
+      top: 28px;
+      left: 24px;
+    }
+
+    .label-two {
+      bottom: 28px;
+      right: 24px;
+    }
+
+    .section {
+      padding: 78px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 36px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tabs button {
+      border: 1px solid var(--line);
+      background: white;
+      padding: 10px 15px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .filter-tabs button.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .search-box {
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 999px;
+      padding: 12px 16px;
+      min-width: 260px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 16px;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .product-image {
+      height: 310px;
+      border-radius: 22px;
+      background: var(--soft);
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .product-image::before {
+      content: "";
+      width: 180px;
+      height: 125px;
+      border-radius: 70px 70px 50px 50px;
+      background: var(--primary);
+      display: block;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: white;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .product-info {
+      padding: 4px 4px 10px;
+    }
+
+    .product-info h3 {
+      font-size: 19px;
+    }
+
+    .price-row {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    .small-link {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .category-card {
+      min-height: 330px;
+      border-radius: 34px;
+      border: 1px solid var(--line);
+      background: white;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .category-card::after {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 150px;
+      right: -40px;
+      bottom: -30px;
+      border-radius: 80px;
+      background: rgba(47,58,51,0.12);
+    }
+
+    .category-card.dark {
+      background: var(--primary);
+      color: white;
+    }
+
+    .category-card.dark p {
+      color: rgba(255,255,255,0.72);
+    }
+
+    .category-card.dark::after {
+      background: rgba(255,255,255,0.12);
+    }
+
+    .brand-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 42px;
+      align-items: start;
+    }
+
+    .brand-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 30px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.04);
+    }
+
+    .brand-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .brand-item {
+      display: flex;
+      gap: 14px;
+      padding: 18px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+    }
+
+    .number {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 42px;
+      align-items: start;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .contact-box {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .contact-box strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .contact-form {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-row {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .form-row label {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #fbfaf8;
+      border-radius: 16px;
+      padding: 14px 15px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .form-row textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(47,58,51,0.12);
+      background: white;
+    }
+
+    footer {
+      background: var(--primary);
+      color: white;
+      padding: 42px 0;
+      margin-top: 40px;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .footer-grid p,
+    .footer-grid button {
+      color: rgba(255,255,255,0.72);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero-grid,
+      .brand-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-grid,
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 56px;
+      }
+
+      .visual-box {
+        height: 330px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .nav {
+        height: auto;
+        padding: 16px 0;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        display: grid;
+        gap: 8px;
+        justify-items: end;
+      }
+
+      .nav-links button {
+        font-size: 14px;
+      }
+
+      .nav-cta {
+        padding: 8px 13px;
+      }
+
+      .toolbar {
+        align-items: stretch;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo" onclick="showPage('products')">
+        <span class="logo-mark">S</span>
+        <span>Snappaw</span>
+      </div>
+
+      <nav class="nav-links">
+        <button class="nav-btn active" onclick="showPage('products')">Products</button>
+        <button class="nav-btn" onclick="showPage('categories')">Categories</button>
+        <button class="nav-btn" onclick="showPage('brand')">Brand</button>
+        <button class="nav-btn nav-cta" onclick="showPage('contact')">Contact</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. 商品页面 -->
+    <section id="products" class="page active">
+      <div class="hero">
+        <div class="container hero-grid">
+          <div class="hero-text">
+            <span class="tag">Adaptive dogwear for growing dogs</span>
+            <h1>Functional dogwear, designed to grow with them.</h1>
+            <p>
+              Snappaw creates adjustable dog clothing for small-breed puppies and responsible urban pet owners who value fit, comfort and longer product life.
+            </p>
+
+            <div class="buttons">
+              <button class="btn btn-primary" onclick="showPage('categories')">Shop by Category</button>
+              <button class="btn btn-secondary" onclick="showPage('brand')">Discover Snappaw</button>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="visual-box">
+              <span class="floating-label label-one">Adjustable chest fit</span>
+              <div class="dog-shape"></div>
+              <span class="floating-label label-two">Growth-friendly panels</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">All Products</p>
+            <h2>Designed for movement, comfort and longer use.</h2>
+            <p>
+              A product range built around adjustable fit systems, calm premium styling and practical everyday wear.
+            </p>
+          </div>
+
+          <div class="toolbar">
+            <div class="filter-tabs">
+              <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+              <button class="filter-btn" onclick="filterProducts('jackets')">Jackets</button>
+              <button class="filter-btn" onclick="filterProducts('harness')">Harness</button>
+              <button class="filter-btn" onclick="filterProducts('accessories')">Accessories</button>
+            </div>
+
+            <input class="search-box" type="text" id="searchInput" placeholder="Search products..." oninput="searchProducts()" />
+          </div>
+
+          <div class="product-grid" id="productGrid">
+            <article class="product-card" data-category="jackets" data-name="adaptive growth jacket">
+              <div class="product-image">
+                <span class="product-badge">Best Concept</span>
+              </div>
+              <div class="product-info">
+                <h3>Adaptive Growth Jacket</h3>
+                <p>Long-length adjustable dog jacket with multi-point fastening.</p>
+                <div class="price-row">
+                  <span class="price">£48.00</span>
+                  <span class="small-link">View Product</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="jackets" data-name="softshell puppy coat">
+              <div class="product-image">
+                <span class="product-badge">New</span>
+              </div>
+              <div class="product-info">
+                <h3>Softshell Puppy Coat</h3>
+                <p>Lightweight outerwear for daily walks and early growth stages.</p>
+                <div class="price-row">
+                  <span class="price">£42.00</span>
+                  <span class="small-link">View Product</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="harness" data-name="adjustable comfort harness">
+              <div class="product-image">
+                <span class="product-badge">Adjustable</span>
+              </div>
+              <div class="product-info">
+                <h3>Adjustable Comfort Harness</h3>
+                <p>Secure everyday harness concept with flexible fit points.</p>
+                <div class="price-row">
+                  <span class="price">£36.00</span>
+                  <span class="small-link">View Product</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="harness" data-name="urban fit vest">
+              <div class="product-image">
+                <span class="product-badge">Urban</span>
+              </div>
+              <div class="product-info">
+                <h3>Urban Fit Vest</h3>
+                <p>Minimal vest silhouette for responsible city pet owners.</p>
+                <div class="price-row">
+                  <span class="price">£39.00</span>
+                  <span class="small-link">View Product</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="accessories" data-name="growth fit extender panel">
+              <div class="product-image">
+                <span class="product-badge">Modular</span>
+              </div>
+              <div class="product-info">
+                <h3>Growth-Fit Extender Panel</h3>
+                <p>Accessory concept that extends the wearing period of garments.</p>
+                <div class="price-row">
+                  <span class="price">£16.00</span>
+                  <span class="small-link">View Product</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="accessories" data-name="snappaw care pouch">
+              <div class="product-image">
+                <span class="product-badge">Care</span>
+              </div>
+              <div class="product-info">
+                <h3>Snappaw Care Pouch</h3>
+                <p>Small walking pouch for treats, bags and everyday essentials.</p>
+                <div class="price-row">
+                  <span class="price">£22.00</span>
+                  <span class="small-link">View Product</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 分类页面 -->
+    <section id="categories" class="page">
+      <div class="section">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Categories</p>
+            <h1>Shop by function, not just size.</h1>
+            <p>
+              Snappaw categories are organised around real puppy growth needs: warmth, fit, adjustability and daily care.
+            </p>
+          </div>
+
+          <div class="category-grid">
+            <article class="category-card dark" onclick="showPage('products'); filterProducts('jackets')">
+              <div>
+                <p class="eyebrow">Category 01</p>
+                <h2>Adaptive Jackets</h2>
+                <p>
+                  Structured outerwear with adjustable fastening and growth-friendly design for small-breed puppies.
+                </p>
+              </div>
+              <span class="btn btn-secondary">View Jackets</span>
+            </article>
+
+            <article class="category-card" onclick="showPage('products'); filterProducts('harness')">
+              <div>
+                <p class="eyebrow">Category 02</p>
+                <h2>Comfort Harness</h2>
+                <p>
+                  Secure everyday walking pieces designed for flexible fit and movement comfort.
+                </p>
+              </div>
+              <span class="btn btn-primary">View Harness</span>
+            </article>
+
+            <article class="category-card" onclick="showPage('products'); filterProducts('accessories')">
+              <div>
+                <p class="eyebrow">Category 03</p>
+                <h2>Care Accessories</h2>
+                <p>
+                  Small add-on products that support daily routines, maintenance and longer product use.
+                </p>
+              </div>
+              <span class="btn btn-primary">View Accessories</span>
+            </article>
+
+            <article class="category-card dark" onclick="showPage('brand')">
+              <div>
+                <p class="eyebrow">Brand System</p>
+                <h2>Why Snappaw?</h2>
+                <p>
+                  Learn how our brand connects adaptive fit, responsible care and anti-disposable pet fashion.
+                </p>
+              </div>
+              <span class="btn btn-secondary">Read Brand Story</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 品牌页面 -->
+    <section id="brand" class="page">
+      <div class="section">
+        <div class="container brand-grid">
+          <div>
+            <p class="eyebrow">Brand Story</p>
+            <h1>Responsible dogwear for longer companionship.</h1>
+            <p>
+              Snappaw challenges the idea that puppy clothing should be short-term, seasonal and disposable.
+              Our brand focuses on adjustable fit, structural practicality and calm premium design.
+            </p>
+
+            <div style="margin-top: 28px;" class="buttons">
+              <button class="btn btn-primary" onclick="showPage('products')">Explore Products</button>
+              <button class="btn btn-secondary" onclick="showPage('contact')">Contact Us</button>
+            </div>
+          </div>
+
+          <div class="brand-card">
+            <p class="eyebrow">Positioning</p>
+            <h2>Functional + Longevity-focused</h2>
+            <p>
+              Snappaw sits away from novelty-driven pet fashion. It is designed for attentive urban dog owners who want practical, reliable and more responsible pet apparel.
+            </p>
+          </div>
+        </div>
+
+        <div class="container brand-list">
+          <div class="brand-item">
+            <span class="number">01</span>
+            <div>
+              <h3>Adaptive Fit</h3>
+              <p>
+                Multi-point fastening helps one garment adapt across different body changes and growth stages.
+              </p>
+            </div>
+          </div>
+
+          <div class="brand-item">
+            <span class="number">02</span>
+            <div>
+              <h3>Anti-disposable Thinking</h3>
+              <p>
+                Snappaw reduces the need for frequent replacement by designing products with a longer use logic.
+              </p>
+            </div>
+          </div>
+
+          <div class="brand-item">
+            <span class="number">03</span>
+            <div>
+              <h3>Quiet Premium Style</h3>
+              <p>
+                The visual language is calm, minimal and functional rather than overly decorative or novelty-led.
+              </p>
+            </div>
+          </div>
+
+          <div class="brand-item">
+            <span class="number">04</span>
+            <div>
+              <h3>Responsible Guardianship</h3>
+              <p>
+                The brand speaks to pet owners who view care as long-term responsibility, not short-term consumption.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 联系我们页面 -->
+    <section id="contact" class="page">
+      <div class="section">
+        <div class="container contact-grid">
+          <div>
+            <p class="eyebrow">Contact Us</p>
+            <h1>Let’s build better dogwear together.</h1>
+            <p>
+              Whether you are interested in product testing, brand collaboration, retail partnership or general enquiries, we would love to hear from you.
+            </p>
+
+            <div class="contact-info">
+              <div class="contact-box">
+                <strong>Email</strong>
+                <p>hello@snappaw.com</p>
+              </div>
+
+              <div class="contact-box">
+                <strong>Location</strong>
+                <p>Manchester, United Kingdom</p>
+              </div>
+
+              <div class="contact-box">
+                <strong>Response Time</strong>
+                <p>Usually within 2–3 working days</p>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for contacting Snappaw!');">
+            <div class="form-row">
+              <label for="name">Your Name</label>
+              <input id="name" type="text" placeholder="Enter your name" required />
+            </div>
+
+            <div class="form-row">
+              <label for="email">Email Address</label>
+              <input id="email" type="email" placeholder="Enter your email" required />
+            </div>
+
+            <div class="form-row">
+              <label for="topic">I’m contacting about</label>
+              <select id="topic" required>
+                <option value="">Please select</option>
+                <option>Product testing</option>
+                <option>Retail partnership</option>
+                <option>Press / media enquiry</option>
+                <option>General question</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="dog">Dog Information</label>
+              <input id="dog" type="text" placeholder="e.g. Toy Poodle, 5 months old" />
+            </div>
+
+            <div class="form-row">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Tell us more about your enquiry..." required></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit" style="width: 100%;">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom: 10px;">
+          <span class="logo-mark" style="background:white; color:var(--primary);">S</span>
+          <span>Snappaw</span>
+        </div>
+        <p>Adaptive dogwear for growing dogs.</p>
+      </div>
+
+      <div class="footer-links">
+        <button onclick="showPage('products')">Products</button>
+        <button onclick="showPage('categories')">Categories</button>
+        <button onclick="showPage('brand')">Brand</button>
+        <button onclick="showPage('contact')">Contact</button>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.page');
+      const navButtons = document.querySelectorAll('.nav-btn');
+
+      pages.forEach(page => {
+        page.classList.remove('active');
+      });
+
+      document.getElementById(pageId).classList.add('active');
+
+      navButtons.forEach(button => {
+        button.classList.remove('active');
+      });
+
+      navButtons.forEach(button => {
+        if (button.textContent.toLowerCase().includes(pageId)) {
+          button.classList.add('active');
+        }
+      });
+
+      if (pageId === 'products') {
+        navButtons[0].classList.add('active');
+      }
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    function filterProducts(category) {
+      const cards = document.querySelectorAll('.product-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(button => {
+        button.classList.remove('active');
+      });
+
+      buttons.forEach(button => {
+        if (button.textContent.toLowerCase().includes(category) || category === 'all' && button.textContent === 'All') {
+          button.classList.add('active');
+        }
+      });
+
+      cards.forEach(card => {
+        const cardCategory = card.dataset.category;
+
+        if (category === 'all' || cardCategory === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.value = '';
+      }
+    }
+
+    function searchProducts() {
+      const searchValue = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.product-card');
+
+      cards.forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+
+        if (name.includes(searchValue)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
