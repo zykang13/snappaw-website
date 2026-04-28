@@ -295,6 +295,13 @@
   border: 1px solid var(--line);
 }
 
+.detail-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .detail-info {
   background: white;
   border: 1px solid var(--line);
@@ -767,6 +774,17 @@
       place-items: center;
     }
 
+.product-image.has-photo::before {
+  display: none;
+}
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .product-image::before {
       content: "";
       width: 180px;
@@ -1133,15 +1151,16 @@
 
           <div class="product-grid" id="productGrid">
             <article class="product-card" data-category="jackets" data-name="adaptive growth jacket">
-              <div class="product-image">
+              <div class="product-image has-photo">
                 <span class="product-badge">Best Concept</span>
+                <img src="p2.jpg" alt="Adaptive Growth Jacket product photo">
               </div>
               <div class="product-info">
                 <h3>Adaptive Growth Jacket</h3>
                 <p>Long-length adjustable dog jacket with multi-point fastening.</p>
                 <div class="price-row">
                   <span class="price">£48.00</span>
-                  <button class="small-link product-view-btn" onclick="showPage('product-detail')">
+                  <button class="small-link product-view-btn" onclick="openProductDetail('adaptive-growth-jacket')">
   View Product
 </button>
                 </div>
@@ -1157,7 +1176,9 @@
                 <p>Lightweight outerwear for daily walks and early growth stages.</p>
                 <div class="price-row">
                   <span class="price">£42.00</span>
-                  <span class="small-link">View Product</span>
+                  <button class="small-link product-view-btn" onclick="openProductDetail('softshell-puppy-coat')">
+                    View Product
+                  </button>
                 </div>
               </div>
             </article>
@@ -1580,19 +1601,20 @@
   <div class="section">
     <div class="container product-detail-grid">
       <div class="detail-image">
-        <span class="product-badge">Adaptive Fit</span>
-        <div class="dog-shape"></div>
+        <span class="product-badge" id="detailBadge">Adaptive Fit</span>
+        <img id="detailMainImage" class="detail-photo" src="p2.jpg" alt="Adaptive Growth Jacket product photo">
+        <div class="dog-shape" id="detailShapeFallback" style="display:none;"></div>
       </div>
 
       <div class="detail-info">
         <button class="back-btn" onclick="showPage('products')">← Back to Products</button>
 
-        <p class="eyebrow">Snappaw Product</p>
-        <h1>Adaptive Growth Jacket</h1>
+        <p class="eyebrow" id="detailEyebrow">Snappaw Product</p>
+        <h1 id="detailName">Adaptive Growth Jacket</h1>
 
-        <p class="detail-price">£48.00</p>
+        <p class="detail-price" id="detailPrice">£48.00</p>
 
-        <p class="detail-desc">
+        <p class="detail-desc" id="detailDescription">
           A long-length adjustable dog jacket designed for small-breed puppies.
           The garment uses multi-point fastening and growth-friendly panels to support
           comfort, movement and longer product use.
@@ -1600,19 +1622,19 @@
 
         <div class="detail-options">
           <div>
-            <strong>Size</strong>
-            <div class="option-row">
-              <button>XS</button>
-              <button>S</button>
-              <button>M</button>
+            <strong id="detailSizeLabel">Size</strong>
+            <div class="option-row" id="detailSizeOptions">
+              <button type="button">XS</button>
+              <button type="button">S</button>
+              <button type="button">M</button>
             </div>
           </div>
 
           <div>
-            <strong>Colour</strong>
-            <div class="option-row">
-              <button>Forest Green</button>
-              <button>Warm Beige</button>
+            <strong id="detailColourLabel">Colour</strong>
+            <div class="option-row" id="detailColourOptions">
+              <button type="button">Forest Green</button>
+              <button type="button">Warm Beige</button>
             </div>
           </div>
         </div>
@@ -1624,17 +1646,17 @@
         <div class="detail-list">
           <div>
             <strong>Key Features</strong>
-            <p>Adjustable chest fit, growth-friendly panels, lightweight structure.</p>
+            <p id="detailFeatures">Adjustable chest fit, growth-friendly panels, lightweight structure.</p>
           </div>
 
           <div>
             <strong>Material</strong>
-            <p>Softshell outer layer with stretch extension zones.</p>
+            <p id="detailMaterial">Softshell outer layer with stretch extension zones.</p>
           </div>
 
           <div>
             <strong>Care</strong>
-            <p>Gentle machine wash. Air dry recommended.</p>
+            <p id="detailCare">Gentle machine wash. Air dry recommended.</p>
           </div>
         </div>
       </div>
@@ -1664,6 +1686,73 @@
   </footer>
 
   <script>
+    const productDetails = {
+      'adaptive-growth-jacket': {
+        badge: 'Adaptive Fit',
+        eyebrow: 'Snappaw Product',
+        name: 'Adaptive Growth Jacket',
+        price: '£48.00',
+        description: 'A long-length adjustable dog jacket designed for small-breed puppies. The garment uses multi-point fastening and growth-friendly panels to support comfort, movement and longer product use.',
+        sizes: ['XS', 'S', 'M'],
+        colours: ['Forest Green', 'Warm Beige'],
+        features: 'Adjustable chest fit, growth-friendly panels, lightweight structure.',
+        material: 'Softshell outer layer with stretch extension zones.',
+        care: 'Gentle machine wash. Air dry recommended.',
+        image: {
+          src: 'p2.jpg',
+          alt: 'Adaptive Growth Jacket product photo'
+        }
+      },
+      'softshell-puppy-coat': {
+        badge: 'New Arrival',
+        eyebrow: 'Snappaw Product',
+        name: 'Softshell Puppy Coat',
+        price: '£42.00',
+        description: 'A lightweight softshell coat for daily walks and changing weather. Designed for early growth stages with easy-on closures and flexible movement zones.',
+        sizes: ['2XS', 'XS', 'S'],
+        colours: ['Moss Green', 'Stone Beige'],
+        features: 'Lightweight weather layer, puppy-friendly fit, quick fastening design.',
+        material: 'Water-resistant softshell with breathable inner mesh lining.',
+        care: 'Cold gentle wash. Fasten closures before washing and line dry.'
+      }
+    };
+
+    function renderOptionButtons(containerId, items) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = items.map(item => `<button type="button">${item}</button>`).join('');
+    }
+
+    function openProductDetail(productId) {
+      const product = productDetails[productId];
+      if (!product) return;
+
+      document.getElementById('detailBadge').textContent = product.badge;
+      document.getElementById('detailEyebrow').textContent = product.eyebrow;
+      document.getElementById('detailName').textContent = product.name;
+      document.getElementById('detailPrice').textContent = product.price;
+      document.getElementById('detailDescription').textContent = product.description;
+      document.getElementById('detailFeatures').textContent = product.features;
+      document.getElementById('detailMaterial').textContent = product.material;
+      document.getElementById('detailCare').textContent = product.care;
+
+      const detailMainImage = document.getElementById('detailMainImage');
+      const detailShapeFallback = document.getElementById('detailShapeFallback');
+      if (product.image) {
+        detailMainImage.src = product.image.src;
+        detailMainImage.alt = product.image.alt;
+        detailMainImage.style.display = 'block';
+        detailShapeFallback.style.display = 'none';
+      } else {
+        detailMainImage.style.display = 'none';
+        detailShapeFallback.style.display = 'block';
+      }
+
+      renderOptionButtons('detailSizeOptions', product.sizes);
+      renderOptionButtons('detailColourOptions', product.colours);
+
+      showPage('product-detail');
+    }
+
     function showPage(pageId) {
       const pages = document.querySelectorAll('.page');
       const navButtons = document.querySelectorAll('.nav-btn');
