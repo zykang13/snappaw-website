@@ -295,6 +295,13 @@
   border: 1px solid var(--line);
 }
 
+.detail-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .detail-info {
   background: white;
   border: 1px solid var(--line);
@@ -767,6 +774,17 @@
       place-items: center;
     }
 
+.product-image.has-photo::before {
+  display: none;
+}
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .product-image::before {
       content: "";
       width: 180px;
@@ -1133,8 +1151,9 @@
 
           <div class="product-grid" id="productGrid">
             <article class="product-card" data-category="jackets" data-name="adaptive growth jacket">
-              <div class="product-image">
+              <div class="product-image has-photo">
                 <span class="product-badge">Best Concept</span>
+                <img src="p2.jpg" alt="Adaptive Growth Jacket product photo">
               </div>
               <div class="product-info">
                 <h3>Adaptive Growth Jacket</h3>
@@ -1583,7 +1602,8 @@
     <div class="container product-detail-grid">
       <div class="detail-image">
         <span class="product-badge" id="detailBadge">Adaptive Fit</span>
-        <div class="dog-shape"></div>
+        <img id="detailMainImage" class="detail-photo" src="images/p3.jpg" alt="Adaptive Growth Jacket product photo">
+        <div class="dog-shape" id="detailShapeFallback" style="display:none;"></div>
       </div>
 
       <div class="detail-info">
@@ -1677,7 +1697,11 @@
         colours: ['Forest Green', 'Warm Beige'],
         features: 'Adjustable chest fit, growth-friendly panels, lightweight structure.',
         material: 'Softshell outer layer with stretch extension zones.',
-        care: 'Gentle machine wash. Air dry recommended.'
+        care: 'Gentle machine wash. Air dry recommended.',
+        image: {
+          src: 'images/p3.jpg',
+          alt: 'Adaptive Growth Jacket product photo'
+        }
       },
       'softshell-puppy-coat': {
         badge: 'New Arrival',
@@ -1710,6 +1734,20 @@
       document.getElementById('detailFeatures').textContent = product.features;
       document.getElementById('detailMaterial').textContent = product.material;
       document.getElementById('detailCare').textContent = product.care;
+
+      const detailMainImage = document.getElementById('detailMainImage');
+      const detailShapeFallback = document.getElementById('detailShapeFallback');
+      if (detailMainImage && detailShapeFallback) {
+        if (product.image) {
+          detailMainImage.src = product.image.src;
+          detailMainImage.alt = product.image.alt;
+          detailMainImage.style.display = 'block';
+          detailShapeFallback.style.display = 'none';
+        } else {
+          detailMainImage.style.display = 'none';
+          detailShapeFallback.style.display = 'block';
+        }
+      }
 
       renderOptionButtons('detailSizeOptions', product.sizes);
       renderOptionButtons('detailColourOptions', product.colours);
