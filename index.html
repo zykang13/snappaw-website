@@ -1737,14 +1737,16 @@
 
       const detailMainImage = document.getElementById('detailMainImage');
       const detailShapeFallback = document.getElementById('detailShapeFallback');
-      if (product.image) {
-        detailMainImage.src = product.image.src;
-        detailMainImage.alt = product.image.alt;
-        detailMainImage.style.display = 'block';
-        detailShapeFallback.style.display = 'none';
-      } else {
-        detailMainImage.style.display = 'none';
-        detailShapeFallback.style.display = 'block';
+      if (detailMainImage && detailShapeFallback) {
+        if (product.image) {
+          detailMainImage.src = product.image.src;
+          detailMainImage.alt = product.image.alt;
+          detailMainImage.style.display = 'block';
+          detailShapeFallback.style.display = 'none';
+        } else {
+          detailMainImage.style.display = 'none';
+          detailShapeFallback.style.display = 'block';
+        }
       }
 
       renderOptionButtons('detailSizeOptions', product.sizes);
