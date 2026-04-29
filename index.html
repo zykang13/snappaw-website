@@ -361,11 +361,135 @@
   border-top: 1px solid var(--line);
 }
 
-.product-view-btn {
+    .product-view-btn {
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
+}
+
+.product-image.has-photo::before {
+  display: none;
+}
+
+.product-image.has-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.merch-hero {
+  padding: 76px 0 52px;
+  background: var(--soft);
+}
+
+.merch-hero-grid {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: 42px;
+  align-items: center;
+}
+
+.merch-hero-media {
+  display: grid;
+  grid-template-columns: 1fr 0.72fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.merch-hero-media img,
+.merch-product-media img,
+.merch-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.merch-hero-media img {
+  min-height: 420px;
+  border-radius: 30px;
+}
+
+.merch-hero-media img:last-child {
+  min-height: 300px;
+  align-self: end;
+}
+
+.merch-products {
+  display: grid;
+  gap: 72px;
+}
+
+.merch-product {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 34px;
+  align-items: center;
+}
+
+.merch-product:nth-child(even) {
+  grid-template-columns: 0.95fr 1.05fr;
+}
+
+.merch-product:nth-child(even) .merch-product-copy {
+  order: 2;
+}
+
+.merch-product-copy {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+}
+
+.merch-product-copy ul {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0 0 20px;
+  color: var(--muted);
+}
+
+.merch-product-media {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  grid-template-rows: 250px 250px;
+  gap: 16px;
+}
+
+.merch-product-media img:first-child {
+  grid-row: span 2;
+}
+
+.merch-product-media img,
+.merch-tile {
+  border-radius: 28px;
+  overflow: hidden;
+  background: white;
+  border: 1px solid var(--line);
+}
+
+.merch-band {
+  background: var(--primary);
+  color: white;
+  margin-top: 76px;
+  padding: 56px 0;
+}
+
+.merch-band p {
+  color: rgba(255,255,255,0.72);
+}
+
+.merch-band-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: center;
+}
+
+.merch-tile {
+  min-height: 280px;
 }
 
 @media (max-width: 900px) {
@@ -375,6 +499,34 @@
 
   .detail-image {
     min-height: 360px;
+  }
+
+  .merch-hero-grid,
+  .merch-product,
+  .merch-product:nth-child(even),
+  .merch-band-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .merch-product:nth-child(even) .merch-product-copy {
+    order: 0;
+  }
+
+  .merch-hero-media,
+  .merch-product-media {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .merch-product-media img:first-child {
+    grid-row: auto;
+  }
+
+  .merch-hero-media img,
+  .merch-hero-media img:last-child,
+  .merch-product-media img {
+    min-height: 280px;
+    height: 320px;
   }
 }
     :root {
@@ -1076,6 +1228,7 @@
       <nav class="nav-links">
         <button class="nav-btn active" onclick="showPage('products')">Products</button>
         <button class="nav-btn" onclick="showPage('categories')">Categories</button>
+        <button class="nav-btn" onclick="showPage('merch')">Merch</button>
         <button class="nav-btn" onclick="showPage('brand')">Brand</button>
         <button class="nav-btn nav-cta" onclick="showPage('contact')">Contact</button>
       </nav>
@@ -1096,6 +1249,7 @@
 
             <div class="buttons">
               <button class="btn btn-primary" onclick="showPage('categories')">Shop by Category</button>
+              <button class="btn btn-secondary" onclick="showPage('merch')">Shop Merch</button>
               <button class="btn btn-secondary" onclick="showPage('brand')">Discover Snappaw</button>
             </div>
           </div>
@@ -1216,6 +1370,36 @@
                 <div class="price-row">
                   <span class="price">£22.00</span>
                   <span class="small-link">View Product</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="accessories" data-name="snappaw daily tote bag" onclick="showPage('merch')">
+              <div class="product-image has-photo">
+                <img src="images/merch-tote-studio.png" alt="Snappaw daily tote bag">
+                <span class="product-badge">Merch</span>
+              </div>
+              <div class="product-info">
+                <h3>Snappaw Daily Tote Bag</h3>
+                <p>Black cotton tote for walks, errands and everyday companion care.</p>
+                <div class="price-row">
+                  <span class="price">£18.00</span>
+                  <span class="small-link">View Merch</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="accessories" data-name="snappaw ceramic mug" onclick="showPage('merch')">
+              <div class="product-image has-photo">
+                <img src="images/merch-mug-front.png" alt="Snappaw ceramic mug">
+                <span class="product-badge">Merch</span>
+              </div>
+              <div class="product-info">
+                <h3>Snappaw Ceramic Mug</h3>
+                <p>Everyday ceramic mug with front and back Snappaw brand artwork.</p>
+                <div class="price-row">
+                  <span class="price">£14.00</span>
+                  <span class="small-link">View Merch</span>
                 </div>
               </div>
             </article>
@@ -1509,6 +1693,104 @@
   </div>
 </section>
 
+    <section id="merch" class="page">
+      <div class="merch-hero">
+        <div class="container merch-hero-grid">
+          <div>
+            <p class="eyebrow">Snappaw Merch</p>
+            <h1>Daily pieces for calm pet care routines.</h1>
+            <p>
+              The Snappaw mug and tote bag extend the brand world beyond dogwear,
+              turning responsible companionship into small everyday rituals.
+            </p>
+            <div class="buttons" style="margin-top: 28px;">
+              <button class="btn btn-primary" onclick="showPage('contact')">Ask About Merch</button>
+              <button class="btn btn-secondary" onclick="showPage('products')">Back to Products</button>
+            </div>
+          </div>
+
+          <div class="merch-hero-media">
+            <img src="images/merch-tote-lifestyle.png" alt="Snappaw tote bag carried with casual outfit">
+            <img src="images/merch-mug-breakfast.jpg" alt="Snappaw ceramic mug on breakfast table">
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container merch-products">
+          <article class="merch-product">
+            <div class="merch-product-copy">
+              <p class="eyebrow">Product 01</p>
+              <h2>Snappaw Daily Tote Bag</h2>
+              <p>
+                A durable black tote designed for small errands, dog-walk essentials,
+                notebooks and daily city routines. The print keeps the Snappaw identity
+                clear while staying simple enough for everyday use.
+              </p>
+              <ul>
+                <li>Black cotton-look finish with long shoulder handles</li>
+                <li>Large front Snappaw dog family artwork</li>
+                <li>Useful for treats, small accessories and daily carry items</li>
+              </ul>
+              <div class="price-row" style="margin-top: 24px;">
+                <span class="price">£18.00</span>
+                <button class="small-link product-view-btn" onclick="showPage('contact')">Enquire</button>
+              </div>
+            </div>
+
+            <div class="merch-product-media">
+              <img src="images/merch-tote-studio.png" alt="Snappaw black tote bag product photo">
+              <img src="images/merch-tote-lifestyle.png" alt="Snappaw tote bag lifestyle photo">
+              <img src="images/merch-tote-studio.png" alt="Snappaw tote bag print detail">
+            </div>
+          </article>
+
+          <article class="merch-product">
+            <div class="merch-product-copy">
+              <p class="eyebrow">Product 02</p>
+              <h2>Snappaw Ceramic Mug</h2>
+              <p>
+                A white ceramic mug with green Snappaw wrap artwork. One side carries
+                the dog family mark, while the reverse side highlights the Instagram
+                handle and brand values.
+              </p>
+              <ul>
+                <li>Front and back artwork for a complete brand wrap</li>
+                <li>Designed for coffee, tea and desk-side routines</li>
+                <li>Pairs naturally with the calm, responsible Snappaw visual system</li>
+              </ul>
+              <div class="price-row" style="margin-top: 24px;">
+                <span class="price">£14.00</span>
+                <button class="small-link product-view-btn" onclick="showPage('contact')">Enquire</button>
+              </div>
+            </div>
+
+            <div class="merch-product-media">
+              <img src="images/merch-mug-table.jpg" alt="Snappaw mug collection on table">
+              <img src="images/merch-mug-front.png" alt="Snappaw mug front artwork">
+              <img src="images/merch-mug-back.png" alt="Snappaw mug back artwork">
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="merch-band">
+        <div class="container merch-band-grid">
+          <div>
+            <p class="eyebrow">Merch Direction</p>
+            <h2>Functional objects with the same quiet Snappaw confidence.</h2>
+            <p>
+              These products support brand recall without feeling like novelty items:
+              practical, durable and easy to fold into a daily pet-care lifestyle.
+            </p>
+          </div>
+          <div class="merch-tile">
+            <img src="images/merch-mug-table.jpg" alt="Snappaw mug lifestyle table scene">
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 4. 联系我们页面 -->
     <section id="contact" class="page">
       <div class="section">
@@ -1659,6 +1941,7 @@
       <div class="footer-links">
         <button onclick="showPage('products')">Products</button>
         <button onclick="showPage('categories')">Categories</button>
+        <button onclick="showPage('merch')">Merch</button>
         <button onclick="showPage('brand')">Brand</button>
         <button onclick="showPage('contact')">Contact</button>
       </div>
