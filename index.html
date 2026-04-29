@@ -462,6 +462,15 @@
   grid-row: span 2;
 }
 
+.merch-product-media.has-four {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 240px);
+}
+
+.merch-product-media.has-four img:first-child {
+  grid-row: auto;
+}
+
 .merch-product-media img,
 .merch-tile {
   border-radius: 28px;
@@ -514,6 +523,11 @@
 
   .merch-hero-media,
   .merch-product-media {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .merch-product-media.has-four {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
   }
@@ -1403,6 +1417,21 @@
                 </div>
               </div>
             </article>
+
+            <article class="product-card" data-category="accessories" data-name="snappaw insulated tumbler" onclick="showPage('merch')">
+              <div class="product-image has-photo">
+                <img src="images/merch-tumbler-front.png" alt="SNAPPAW insulated tumbler">
+                <span class="product-badge">Merch</span>
+              </div>
+              <div class="product-info">
+                <h3>SNAPPAW insulated tumbler</h3>
+                <p>Stainless steel tumbler with a clear lid and engraved Snappaw artwork.</p>
+                <div class="price-row">
+                  <span class="price">&pound;22.00</span>
+                  <span class="small-link">View Merch</span>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </div>
@@ -1700,7 +1729,7 @@
             <p class="eyebrow">Snappaw Merch</p>
             <h1>Daily pieces for calm pet care routines.</h1>
             <p>
-              The Snappaw mug and tote bag extend the brand world beyond dogwear,
+              The Snappaw mug, tote bag and insulated tumbler extend the brand world beyond dogwear,
               turning responsible companionship into small everyday rituals.
             </p>
             <div class="buttons" style="margin-top: 28px;">
@@ -1711,7 +1740,7 @@
 
           <div class="merch-hero-media">
             <img src="images/merch-tote-lifestyle.png" alt="Snappaw tote bag carried with casual outfit">
-            <img src="images/merch-mug-breakfast.jpg" alt="Snappaw ceramic mug on breakfast table">
+            <img src="images/merch-tumbler-desk.jpg" alt="SNAPPAW insulated tumbler on a desk">
           </div>
         </div>
       </div>
@@ -1771,6 +1800,34 @@
               <img src="images/merch-mug-back.png" alt="Snappaw mug back artwork">
             </div>
           </article>
+
+          <article class="merch-product">
+            <div class="merch-product-copy">
+              <p class="eyebrow">Product 03</p>
+              <h2>SNAPPAW insulated tumbler</h2>
+              <p>
+                A stainless steel insulated tumbler made for desk days, commutes and
+                outdoor routines. The brushed metal finish gives the Snappaw artwork a
+                clean, durable look while the clear lid keeps it practical for daily use.
+              </p>
+              <ul>
+                <li>Brushed stainless steel body with clear drinking lid</li>
+                <li>Front logo artwork with supporting brand details</li>
+                <li>Useful for coffee, iced drinks and everyday hydration</li>
+              </ul>
+              <div class="price-row" style="margin-top: 24px;">
+                <span class="price">&pound;22.00</span>
+                <button class="small-link product-view-btn" onclick="showPage('contact')">Enquire</button>
+              </div>
+            </div>
+
+            <div class="merch-product-media has-four">
+              <img src="images/merch-tumbler-desk.jpg" alt="SNAPPAW insulated tumbler desk lifestyle photo">
+              <img src="images/merch-tumbler-front.png" alt="SNAPPAW insulated tumbler front artwork">
+              <img src="images/merch-tumbler-side.png" alt="SNAPPAW insulated tumbler side artwork">
+              <img src="images/merch-tumbler-back.png" alt="SNAPPAW insulated tumbler back artwork">
+            </div>
+          </article>
         </div>
       </div>
 
@@ -1785,7 +1842,7 @@
             </p>
           </div>
           <div class="merch-tile">
-            <img src="images/merch-mug-table.jpg" alt="Snappaw mug lifestyle table scene">
+            <img src="images/merch-tumbler-open-lid.png" alt="SNAPPAW insulated tumbler with clear lid">
           </div>
         </div>
       </div>
