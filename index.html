@@ -1452,6 +1452,21 @@
                 </div>
               </div>
             </article>
+
+            <article class="product-card" data-category="accessories" data-name="snappaw logo t-shirt" onclick="openProductDetail('snappaw-logo-t-shirt')">
+              <div class="product-image has-photo">
+                <img src="images/merch-shirt-navy.png" alt="SNAPPAW logo t-shirt">
+                <span class="product-badge">Merch</span>
+              </div>
+              <div class="product-info">
+                <h3>SNAPPAW Logo T-Shirt</h3>
+                <p>Everyday unisex-fit apparel with front logo and back dog family artwork.</p>
+                <div class="price-row">
+                  <span class="price">&pound;28.00</span>
+                  <button class="small-link product-view-btn" onclick="openProductDetail('snappaw-logo-t-shirt')">View Product</button>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </div>
@@ -1848,6 +1863,33 @@
               <img src="images/merch-tumbler-back.png" alt="SNAPPAW insulated tumbler back artwork">
             </div>
           </article>
+
+          <article class="merch-product">
+            <div class="merch-product-copy">
+              <p class="eyebrow">Product 04</p>
+              <h2>SNAPPAW Logo T-Shirt</h2>
+              <p>
+                A casual human apparel piece for the Snappaw community, with a small
+                front wordmark and a larger dog family graphic on the back. Available
+                in mens and womens styles across three sizes.
+              </p>
+              <ul>
+                <li>Mens and womens fits available</li>
+                <li>Three sizes: S, M and L</li>
+                <li>Available in dark and light shirt colourways</li>
+              </ul>
+              <div class="price-row" style="margin-top: 24px;">
+                <span class="price">&pound;28.00</span>
+                <button class="small-link product-view-btn" onclick="openProductDetail('snappaw-logo-t-shirt')">View Product</button>
+              </div>
+            </div>
+
+            <div class="merch-product-media">
+              <img src="images/merch-shirt-navy.png" alt="SNAPPAW navy t-shirt front and back">
+              <img src="images/merch-shirt-white.png" alt="SNAPPAW white t-shirt front and back">
+              <img src="images/merch-shirt-black.jpg" alt="SNAPPAW black t-shirt front and back">
+            </div>
+          </article>
         </div>
       </div>
 
@@ -2090,6 +2132,20 @@
         features: 'Insulated body, clear drinking lid, front logo artwork and supporting brand details.',
         material: 'Brushed stainless steel body with transparent plastic lid.',
         care: 'Hand wash recommended. Do not microwave.'
+      },
+      'snappaw-logo-t-shirt': {
+        badge: 'Merch',
+        eyebrow: 'Snappaw Merch',
+        name: 'SNAPPAW Logo T-Shirt',
+        price: '&pound;28.00',
+        image: 'images/merch-shirt-navy.png',
+        description: 'A casual human apparel piece for the Snappaw community, with a small front wordmark and a larger dog family graphic on the back. Available in mens and womens styles across three sizes.',
+        sizes: ['S', 'M', 'L'],
+        colourLabel: 'Style',
+        colours: ['Mens', 'Womens'],
+        features: 'Front SNAPPAW wordmark, back dog family artwork, mens and womens styles.',
+        material: 'Soft cotton jersey t-shirt with printed artwork.',
+        care: 'Machine wash cold inside out. Air dry recommended.'
       }
     };
 
@@ -2110,6 +2166,8 @@
       document.getElementById('detailFeatures').textContent = product.features;
       document.getElementById('detailMaterial').textContent = product.material;
       document.getElementById('detailCare').textContent = product.care;
+      document.getElementById('detailSizeLabel').textContent = product.sizeLabel || 'Size';
+      document.getElementById('detailColourLabel').textContent = product.colourLabel || 'Colour';
 
       const detailImage = document.querySelector('.detail-image');
       const detailPhoto = document.getElementById('detailPhoto');
