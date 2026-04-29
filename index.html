@@ -295,6 +295,26 @@
   border: 1px solid var(--line);
 }
 
+.detail-image.has-photo {
+  background: white;
+}
+
+.detail-image.has-photo .dog-shape {
+  display: none;
+}
+
+.detail-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 620px;
+  object-fit: cover;
+  display: none;
+}
+
+.detail-image.has-photo .detail-photo {
+  display: block;
+}
+
 .detail-info {
   background: white;
   border: 1px solid var(--line);
@@ -1388,7 +1408,7 @@
               </div>
             </article>
 
-            <article class="product-card" data-category="accessories" data-name="snappaw daily tote bag" onclick="showPage('merch')">
+            <article class="product-card" data-category="accessories" data-name="snappaw daily tote bag" onclick="openProductDetail('snappaw-daily-tote-bag')">
               <div class="product-image has-photo">
                 <img src="images/merch-tote-studio.png" alt="Snappaw daily tote bag">
                 <span class="product-badge">Merch</span>
@@ -1398,12 +1418,12 @@
                 <p>Black cotton tote for walks, errands and everyday companion care.</p>
                 <div class="price-row">
                   <span class="price">£18.00</span>
-                  <span class="small-link">View Merch</span>
+                  <button class="small-link product-view-btn" onclick="openProductDetail('snappaw-daily-tote-bag')">View Product</button>
                 </div>
               </div>
             </article>
 
-            <article class="product-card" data-category="accessories" data-name="snappaw ceramic mug" onclick="showPage('merch')">
+            <article class="product-card" data-category="accessories" data-name="snappaw ceramic mug" onclick="openProductDetail('snappaw-ceramic-mug')">
               <div class="product-image has-photo">
                 <img src="images/merch-mug-front.png" alt="Snappaw ceramic mug">
                 <span class="product-badge">Merch</span>
@@ -1413,12 +1433,12 @@
                 <p>Everyday ceramic mug with front and back Snappaw brand artwork.</p>
                 <div class="price-row">
                   <span class="price">£14.00</span>
-                  <span class="small-link">View Merch</span>
+                  <button class="small-link product-view-btn" onclick="openProductDetail('snappaw-ceramic-mug')">View Product</button>
                 </div>
               </div>
             </article>
 
-            <article class="product-card" data-category="accessories" data-name="snappaw insulated tumbler" onclick="showPage('merch')">
+            <article class="product-card" data-category="accessories" data-name="snappaw insulated tumbler" onclick="openProductDetail('snappaw-insulated-tumbler')">
               <div class="product-image has-photo">
                 <img src="images/merch-tumbler-front.png" alt="SNAPPAW insulated tumbler">
                 <span class="product-badge">Merch</span>
@@ -1428,7 +1448,7 @@
                 <p>Stainless steel tumbler with a clear lid and engraved Snappaw artwork.</p>
                 <div class="price-row">
                   <span class="price">&pound;22.00</span>
-                  <span class="small-link">View Merch</span>
+                  <button class="small-link product-view-btn" onclick="openProductDetail('snappaw-insulated-tumbler')">View Product</button>
                 </div>
               </div>
             </article>
@@ -1763,7 +1783,7 @@
               </ul>
               <div class="price-row" style="margin-top: 24px;">
                 <span class="price">£18.00</span>
-                <button class="small-link product-view-btn" onclick="showPage('contact')">Enquire</button>
+                <button class="small-link product-view-btn" onclick="openProductDetail('snappaw-daily-tote-bag')">View Product</button>
               </div>
             </div>
 
@@ -1790,7 +1810,7 @@
               </ul>
               <div class="price-row" style="margin-top: 24px;">
                 <span class="price">£14.00</span>
-                <button class="small-link product-view-btn" onclick="showPage('contact')">Enquire</button>
+                <button class="small-link product-view-btn" onclick="openProductDetail('snappaw-ceramic-mug')">View Product</button>
               </div>
             </div>
 
@@ -1817,7 +1837,7 @@
               </ul>
               <div class="price-row" style="margin-top: 24px;">
                 <span class="price">&pound;22.00</span>
-                <button class="small-link product-view-btn" onclick="showPage('contact')">Enquire</button>
+                <button class="small-link product-view-btn" onclick="openProductDetail('snappaw-insulated-tumbler')">View Product</button>
               </div>
             </div>
 
@@ -1922,6 +1942,7 @@
     <div class="container product-detail-grid">
       <div class="detail-image">
         <span class="product-badge" id="detailBadge">Adaptive Fit</span>
+        <img class="detail-photo" id="detailPhoto" src="" alt="">
         <div class="dog-shape"></div>
       </div>
 
@@ -2030,6 +2051,45 @@
         features: 'Lightweight weather layer, puppy-friendly fit, quick fastening design.',
         material: 'Water-resistant softshell with breathable inner mesh lining.',
         care: 'Cold gentle wash. Fasten closures before washing and line dry.'
+      },
+      'snappaw-daily-tote-bag': {
+        badge: 'Merch',
+        eyebrow: 'Snappaw Merch',
+        name: 'Snappaw Daily Tote Bag',
+        price: '&pound;18.00',
+        image: 'images/merch-tote-lifestyle.png',
+        description: 'A durable black tote designed for small errands, dog-walk essentials, notebooks and daily city routines. The print keeps the Snappaw identity clear while staying simple enough for everyday use.',
+        sizes: ['One Size'],
+        colours: ['Black'],
+        features: 'Long shoulder handles, large front Snappaw artwork, practical everyday capacity.',
+        material: 'Cotton-look fabric with printed Snappaw brand artwork.',
+        care: 'Spot clean recommended. Air dry flat.'
+      },
+      'snappaw-ceramic-mug': {
+        badge: 'Merch',
+        eyebrow: 'Snappaw Merch',
+        name: 'Snappaw Ceramic Mug',
+        price: '&pound;14.00',
+        image: 'images/merch-mug-front.png',
+        description: 'A white ceramic mug with green Snappaw wrap artwork. One side carries the dog family mark, while the reverse side highlights the Instagram handle and brand values.',
+        sizes: ['One Size'],
+        colours: ['White', 'Green Artwork'],
+        features: 'Front and back artwork, comfortable handle, made for coffee, tea and desk-side routines.',
+        material: 'Gloss ceramic body with printed wrap artwork.',
+        care: 'Hand wash recommended to preserve the artwork.'
+      },
+      'snappaw-insulated-tumbler': {
+        badge: 'Merch',
+        eyebrow: 'Snappaw Merch',
+        name: 'SNAPPAW insulated tumbler',
+        price: '&pound;22.00',
+        image: 'images/merch-tumbler-front.png',
+        description: 'A stainless steel insulated tumbler made for desk days, commutes and outdoor routines. The brushed metal finish gives the Snappaw artwork a clean, durable look while the clear lid keeps it practical for daily use.',
+        sizes: ['One Size'],
+        colours: ['Brushed Steel', 'Clear Lid'],
+        features: 'Insulated body, clear drinking lid, front logo artwork and supporting brand details.',
+        material: 'Brushed stainless steel body with transparent plastic lid.',
+        care: 'Hand wash recommended. Do not microwave.'
       }
     };
 
@@ -2045,11 +2105,23 @@
       document.getElementById('detailBadge').textContent = product.badge;
       document.getElementById('detailEyebrow').textContent = product.eyebrow;
       document.getElementById('detailName').textContent = product.name;
-      document.getElementById('detailPrice').textContent = product.price;
+      document.getElementById('detailPrice').innerHTML = product.price;
       document.getElementById('detailDescription').textContent = product.description;
       document.getElementById('detailFeatures').textContent = product.features;
       document.getElementById('detailMaterial').textContent = product.material;
       document.getElementById('detailCare').textContent = product.care;
+
+      const detailImage = document.querySelector('.detail-image');
+      const detailPhoto = document.getElementById('detailPhoto');
+      if (product.image) {
+        detailPhoto.src = product.image;
+        detailPhoto.alt = product.name;
+        detailImage.classList.add('has-photo');
+      } else {
+        detailPhoto.removeAttribute('src');
+        detailPhoto.alt = '';
+        detailImage.classList.remove('has-photo');
+      }
 
       renderOptionButtons('detailSizeOptions', product.sizes);
       renderOptionButtons('detailColourOptions', product.colours);
