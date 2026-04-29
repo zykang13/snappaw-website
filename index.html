@@ -370,6 +370,12 @@
   border-color: var(--primary);
 }
 
+.option-row button.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
 .detail-list {
   display: grid;
   gap: 16px;
@@ -2019,6 +2025,11 @@
               <button type="button">Warm Beige</button>
             </div>
           </div>
+
+          <div id="detailFitGroup" style="display:none;">
+            <strong id="detailFitLabel">Fit</strong>
+            <div class="option-row" id="detailFitOptions"></div>
+          </div>
         </div>
 
         <button class="btn btn-primary" style="width:100%; margin-top:24px;">
@@ -2141,17 +2152,50 @@
         image: 'images/merch-shirt-navy.png',
         description: 'A casual human apparel piece for the Snappaw community, with a small front wordmark and a larger dog family graphic on the back. Available in mens and womens styles across three sizes.',
         sizes: ['S', 'M', 'L'],
-        colourLabel: 'Style',
-        colours: ['Mens', 'Womens'],
+        colours: ['Navy', 'White', 'Black'],
+        fits: ['Mens', 'Womens'],
+        colourImages: {
+          Navy: 'images/merch-shirt-navy.png',
+          White: 'images/merch-shirt-white.png',
+          Black: 'images/merch-shirt-black.jpg'
+        },
         features: 'Front SNAPPAW wordmark, back dog family artwork, mens and womens styles.',
         material: 'Soft cotton jersey t-shirt with printed artwork.',
         care: 'Machine wash cold inside out. Air dry recommended.'
       }
     };
 
-    function renderOptionButtons(containerId, items) {
+    function setDetailPhoto(product, imageSrc) {
+      const detailImage = document.querySelector('.detail-image');
+      const detailPhoto = document.getElementById('detailPhoto');
+
+      if (imageSrc) {
+        detailPhoto.src = imageSrc;
+        detailPhoto.alt = product.name;
+        detailImage.classList.add('has-photo');
+      } else {
+        detailPhoto.removeAttribute('src');
+        detailPhoto.alt = '';
+        detailImage.classList.remove('has-photo');
+      }
+    }
+
+    function renderOptionButtons(containerId, items, onSelect) {
       const container = document.getElementById(containerId);
-      container.innerHTML = items.map(item => `<button type="button">${item}</button>`).join('');
+      container.innerHTML = '';
+
+      items.forEach((item, index) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = item;
+        if (index === 0) button.classList.add('active');
+        button.addEventListener('click', () => {
+          container.querySelectorAll('button').forEach(option => option.classList.remove('active'));
+          button.classList.add('active');
+          if (onSelect) onSelect(item);
+        });
+        container.appendChild(button);
+      });
     }
 
     function openProductDetail(productId) {
@@ -2169,20 +2213,24 @@
       document.getElementById('detailSizeLabel').textContent = product.sizeLabel || 'Size';
       document.getElementById('detailColourLabel').textContent = product.colourLabel || 'Colour';
 
-      const detailImage = document.querySelector('.detail-image');
-      const detailPhoto = document.getElementById('detailPhoto');
-      if (product.image) {
-        detailPhoto.src = product.image;
-        detailPhoto.alt = product.name;
-        detailImage.classList.add('has-photo');
-      } else {
-        detailPhoto.removeAttribute('src');
-        detailPhoto.alt = '';
-        detailImage.classList.remove('has-photo');
-      }
+      setDetailPhoto(product, product.image);
 
       renderOptionButtons('detailSizeOptions', product.sizes);
-      renderOptionButtons('detailColourOptions', product.colours);
+      renderOptionButtons('detailColourOptions', product.colours, selected => {
+        if (product.colourImages && product.colourImages[selected]) {
+          setDetailPhoto(product, product.colourImages[selected]);
+        }
+      });
+
+      const detailFitGroup = document.getElementById('detailFitGroup');
+      if (product.fits && product.fits.length) {
+        detailFitGroup.style.display = '';
+        document.getElementById('detailFitLabel').textContent = product.fitLabel || 'Fit';
+        renderOptionButtons('detailFitOptions', product.fits);
+      } else {
+        detailFitGroup.style.display = 'none';
+        document.getElementById('detailFitOptions').innerHTML = '';
+      }
 
       showPage('product-detail');
     }
