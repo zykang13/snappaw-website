@@ -640,14 +640,13 @@
     }
 
     .logo-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: white;
-      display: grid;
-      place-items: center;
-      font-size: 15px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: white;
+      display: block;
+      object-fit: contain;
+      border: 1px solid var(--line);
     }
 
     .nav-links {
@@ -1261,7 +1260,7 @@
   <header>
     <div class="container nav">
       <div class="logo" onclick="showPage('products')">
-        <span class="logo-mark">S</span>
+        <img class="logo-mark" src="images/snappaw-logo.jpg" alt="Snappaw logo">
         <span>Snappaw</span>
       </div>
 
@@ -2105,7 +2104,7 @@
     <div class="container footer-grid">
       <div>
         <div class="logo" style="margin-bottom: 10px;">
-          <span class="logo-mark" style="background:white; color:var(--primary);">S</span>
+          <img class="logo-mark" src="images/snappaw-logo.jpg" alt="Snappaw logo">
           <span>Snappaw</span>
         </div>
         <p>Adaptive dogwear for growing dogs.</p>
