@@ -303,16 +303,35 @@
   display: none;
 }
 
+.detail-gallery {
+  width: 100%;
+  height: 100%;
+  display: none;
+  gap: 14px;
+  padding: 14px;
+}
+
+.detail-image.has-photo .detail-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.detail-image.has-photo.has-gallery .detail-gallery {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .detail-photo {
   width: 100%;
   height: 100%;
   min-height: 620px;
   object-fit: cover;
-  display: none;
+  display: block;
+  border-radius: 24px;
+  border: 1px solid var(--line);
 }
 
-.detail-image.has-photo .detail-photo {
-  display: block;
+.detail-image.has-photo.has-gallery .detail-photo {
+  min-height: 592px;
 }
 
 .detail-info {
@@ -552,6 +571,15 @@
 
   .detail-image {
     min-height: 360px;
+  }
+
+  .detail-image.has-photo.has-gallery .detail-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-photo,
+  .detail-image.has-photo.has-gallery .detail-photo {
+    min-height: 320px;
   }
 
   .merch-hero-grid,
@@ -2061,7 +2089,9 @@
     <div class="container product-detail-grid">
       <div class="detail-image">
         <span class="product-badge" id="detailBadge">Adaptive Fit</span>
-        <img class="detail-photo" id="detailPhoto" src="" alt="">
+        <div class="detail-gallery" id="detailGallery">
+          <img class="detail-photo" id="detailPhoto" src="" alt="">
+        </div>
         <div class="dog-shape"></div>
       </div>
 
@@ -2225,10 +2255,11 @@
         sizes: ['S', 'M', 'L'],
         colours: ['Navy', 'White', 'Black'],
         fits: ['Mens', 'Womens'],
+        images: ['images/merch-shirt-navy-front.png', 'images/merch-shirt-navy-back.png'],
         colourImages: {
-          Navy: 'images/merch-shirt-navy-front.png',
-          White: 'images/merch-shirt-white-front.png',
-          Black: 'images/merch-shirt-black-front.png'
+          Navy: ['images/merch-shirt-navy-front.png', 'images/merch-shirt-navy-back.png'],
+          White: ['images/merch-shirt-white-front.png', 'images/merch-shirt-white-back.png'],
+          Black: ['images/merch-shirt-black-front.png', 'images/merch-shirt-black-back.png']
         },
         features: 'Front SNAPPAW wordmark, back dog family artwork, mens and womens styles.',
         material: 'Soft cotton jersey t-shirt with printed artwork.',
@@ -2240,6 +2271,7 @@
         name: 'SNAPPAW Baby Bodysuit',
         price: '&pound;24.00',
         image: 'images/merch-baby-bodysuit-front.png',
+        images: ['images/merch-baby-bodysuit-front.png', 'images/merch-baby-bodysuit-back.png'],
         description: 'A soft blue baby bodysuit that brings the Snappaw family mark into a smaller everyday piece. The front keeps the branding minimal, while the back carries the full dog family artwork.',
         sizes: ['3M', '6M', '12M'],
         colours: ['Baby Blue'],
@@ -2251,16 +2283,25 @@
 
     function setDetailPhoto(product, imageSrc) {
       const detailImage = document.querySelector('.detail-image');
-      const detailPhoto = document.getElementById('detailPhoto');
+      const detailGallery = document.getElementById('detailGallery');
+      const imageList = Array.isArray(imageSrc) ? imageSrc : (imageSrc ? [imageSrc] : []);
 
-      if (imageSrc) {
-        detailPhoto.src = imageSrc;
-        detailPhoto.alt = product.name;
+      detailGallery.innerHTML = '';
+
+      if (imageList.length) {
+        imageList.forEach((src, index) => {
+          const detailPhoto = document.createElement('img');
+          detailPhoto.className = 'detail-photo';
+          detailPhoto.src = src;
+          detailPhoto.alt = imageList.length > 1 ? `${product.name} ${index === 0 ? 'front' : 'back'}` : product.name;
+          detailGallery.appendChild(detailPhoto);
+        });
         detailImage.classList.add('has-photo');
+        detailImage.classList.toggle('has-gallery', imageList.length > 1);
       } else {
-        detailPhoto.removeAttribute('src');
-        detailPhoto.alt = '';
+        detailGallery.innerHTML = '<img class="detail-photo" id="detailPhoto" src="" alt="">';
         detailImage.classList.remove('has-photo');
+        detailImage.classList.remove('has-gallery');
       }
     }
 
@@ -2297,7 +2338,7 @@
       document.getElementById('detailSizeLabel').textContent = product.sizeLabel || 'Size';
       document.getElementById('detailColourLabel').textContent = product.colourLabel || 'Colour';
 
-      setDetailPhoto(product, product.image);
+      setDetailPhoto(product, product.images || product.image);
 
       renderOptionButtons('detailSizeOptions', product.sizes);
       renderOptionButtons('detailColourOptions', product.colours, selected => {
