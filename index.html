@@ -497,6 +497,15 @@
   grid-row: auto;
 }
 
+.merch-product-media.has-two {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 460px;
+}
+
+.merch-product-media.has-two img:first-child {
+  grid-row: auto;
+}
+
 .merch-product-media img,
 .merch-tile {
   border-radius: 28px;
@@ -554,6 +563,11 @@
   }
 
   .merch-product-media.has-four {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .merch-product-media.has-two {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
   }
@@ -1475,7 +1489,7 @@
 
             <article class="product-card" data-category="accessories" data-name="snappaw baby bodysuit" onclick="openProductDetail('snappaw-baby-bodysuit')">
               <div class="product-image has-photo">
-                <img src="images/merch-baby-bodysuit-blue.png" alt="SNAPPAW baby bodysuit">
+                <img src="images/merch-baby-bodysuit-front.png" alt="SNAPPAW baby bodysuit front">
                 <span class="product-badge">Merch</span>
               </div>
               <div class="product-info">
@@ -1931,10 +1945,9 @@
               </div>
             </div>
 
-            <div class="merch-product-media">
-              <img src="images/merch-baby-bodysuit-blue.png" alt="SNAPPAW baby bodysuit front and back">
-              <img src="images/merch-baby-bodysuit-blue.png" alt="SNAPPAW baby bodysuit front print">
-              <img src="images/merch-baby-bodysuit-blue.png" alt="SNAPPAW baby bodysuit back print">
+            <div class="merch-product-media has-two">
+              <img src="images/merch-baby-bodysuit-front.png" alt="SNAPPAW baby bodysuit front">
+              <img src="images/merch-baby-bodysuit-back.png" alt="SNAPPAW baby bodysuit back">
             </div>
           </article>
         </div>
@@ -2209,7 +2222,7 @@
         eyebrow: 'Snappaw Merch',
         name: 'SNAPPAW Baby Bodysuit',
         price: '&pound;24.00',
-        image: 'images/merch-baby-bodysuit-blue.png',
+        image: 'images/merch-baby-bodysuit-front.png',
         description: 'A soft blue baby bodysuit that brings the Snappaw family mark into a smaller everyday piece. The front keeps the branding minimal, while the back carries the full dog family artwork.',
         sizes: ['3M', '6M', '12M'],
         colours: ['Baby Blue'],
