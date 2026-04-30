@@ -506,6 +506,15 @@
   grid-row: auto;
 }
 
+.merch-product-media.has-six {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 220px);
+}
+
+.merch-product-media.has-six img:first-child {
+  grid-row: auto;
+}
+
 .merch-product-media img,
 .merch-tile {
   border-radius: 28px;
@@ -568,6 +577,11 @@
   }
 
   .merch-product-media.has-two {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .merch-product-media.has-six {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
   }
@@ -1474,7 +1488,7 @@
 
             <article class="product-card" data-category="accessories" data-name="snappaw logo t-shirt" onclick="openProductDetail('snappaw-logo-t-shirt')">
               <div class="product-image has-photo">
-                <img src="images/merch-shirt-navy.png" alt="SNAPPAW logo t-shirt">
+                <img src="images/merch-shirt-navy-front.png" alt="SNAPPAW navy t-shirt front">
                 <span class="product-badge">Merch</span>
               </div>
               <div class="product-info">
@@ -1918,10 +1932,13 @@
               </div>
             </div>
 
-            <div class="merch-product-media">
-              <img src="images/merch-shirt-navy.png" alt="SNAPPAW navy t-shirt front and back">
-              <img src="images/merch-shirt-white.png" alt="SNAPPAW white t-shirt front and back">
-              <img src="images/merch-shirt-black.jpg" alt="SNAPPAW black t-shirt front and back">
+            <div class="merch-product-media has-six">
+              <img src="images/merch-shirt-navy-front.png" alt="SNAPPAW navy t-shirt front">
+              <img src="images/merch-shirt-white-front.png" alt="SNAPPAW white t-shirt front">
+              <img src="images/merch-shirt-black-front.png" alt="SNAPPAW black t-shirt front">
+              <img src="images/merch-shirt-navy-back.png" alt="SNAPPAW navy t-shirt back">
+              <img src="images/merch-shirt-white-back.png" alt="SNAPPAW white t-shirt back">
+              <img src="images/merch-shirt-black-back.png" alt="SNAPPAW black t-shirt back">
             </div>
           </article>
 
@@ -2203,15 +2220,15 @@
         eyebrow: 'Snappaw Merch',
         name: 'SNAPPAW Logo T-Shirt',
         price: '&pound;28.00',
-        image: 'images/merch-shirt-navy.png',
+        image: 'images/merch-shirt-navy-front.png',
         description: 'A casual human apparel piece for the Snappaw community, with a small front wordmark and a larger dog family graphic on the back. Available in mens and womens styles across three sizes.',
         sizes: ['S', 'M', 'L'],
         colours: ['Navy', 'White', 'Black'],
         fits: ['Mens', 'Womens'],
         colourImages: {
-          Navy: 'images/merch-shirt-navy.png',
-          White: 'images/merch-shirt-white.png',
-          Black: 'images/merch-shirt-black.jpg'
+          Navy: 'images/merch-shirt-navy-front.png',
+          White: 'images/merch-shirt-white-front.png',
+          Black: 'images/merch-shirt-black-front.png'
         },
         features: 'Front SNAPPAW wordmark, back dog family artwork, mens and womens styles.',
         material: 'Soft cotton jersey t-shirt with printed artwork.',
