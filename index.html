@@ -2074,7 +2074,7 @@
             </div>
           </div>
 
-          <div>
+          <div id="detailColourGroup">
             <strong id="detailColourLabel">Colour</strong>
             <div class="option-row" id="detailColourOptions">
               <button type="button">Forest Green</button>
@@ -2146,9 +2146,9 @@
         images: ['images/1.png', 'images/2.png'],
         description: 'The hero product is a growth-adjustable puppy coat featuring a waterproof and windproof outer layer, an added cotton lining, a stretch rear panel, adjustable neck fastening, rear elastic fit controls, and a one-handed magnetic buckle around the abdomen.',
         sizes: ['XS', 'S', 'M'],
-        colours: ['Forest Green', 'Warm Beige'],
+        colours: [],
         features: 'Adjustable chest fit, growth-friendly panels, lightweight structure.',
-        material: 'Softshell outer layer with stretch extension zones.',
+        material: 'The Snappaw GrowShield Cape uses a 3-layer recycled polyester outer shell with waterproof, breathable and windproof protection. Its PFAS-free, GRS-certified and OEKO-TEX certified fabric supports safer and more responsible everyday wear. Inside, a 100% organic cotton lining provides comfort, while the adjustable recycled polyester back panel offers a 10cm-20cm extension range to support longer-term use as the dog grows or changes shape.',
         care: 'Gentle machine wash. Air dry recommended.'
       },
       'softshell-puppy-coat': {
@@ -2160,9 +2160,9 @@
         images: ['images/3.png', 'images/4.png'],
         description: 'The SNAPPAW Growshield Cape is a growth-adjustable puppy cape designed to grow with your dog, featuring a waterproof and windproof outer shell, a breathable cotton lining, a stretch rear panel, adjustable neck fastening, rear elastic fit controls, and a one-handed magnetic buckle around the abdomen.',
         sizes: ['2XS', 'XS', 'S'],
-        colours: ['Moss Green', 'Stone Beige'],
+        colours: [],
         features: 'Lightweight weather layer, puppy-friendly fit, quick fastening design.',
-        material: 'Water-resistant softshell with breathable inner mesh lining.',
+        material: 'The Snappaw GrowShield Cape uses a 3-layer recycled polyester outer shell with waterproof, breathable and windproof protection. Its PFAS-free, GRS-certified and OEKO-TEX certified fabric supports safer and more responsible everyday wear. Inside, a 100% organic cotton lining provides comfort, while the adjustable recycled polyester back panel offers a 10cm-20cm extension range to support longer-term use as the dog grows or changes shape.',
         care: 'Cold gentle wash. Fasten closures before washing and line dry.'
       },
       'snappaw-daily-tote-bag': {
@@ -2300,11 +2300,18 @@
       setDetailPhoto(product, product.images || product.image);
 
       renderOptionButtons('detailSizeOptions', product.sizes);
-      renderOptionButtons('detailColourOptions', product.colours, selected => {
-        if (product.colourImages && product.colourImages[selected]) {
-          setDetailPhoto(product, product.colourImages[selected]);
-        }
-      });
+      const detailColourGroup = document.getElementById('detailColourGroup');
+      if (product.colours && product.colours.length) {
+        detailColourGroup.style.display = '';
+        renderOptionButtons('detailColourOptions', product.colours, selected => {
+          if (product.colourImages && product.colourImages[selected]) {
+            setDetailPhoto(product, product.colourImages[selected]);
+          }
+        });
+      } else {
+        detailColourGroup.style.display = 'none';
+        document.getElementById('detailColourOptions').innerHTML = '';
+      }
 
       const detailFitGroup = document.getElementById('detailFitGroup');
       if (product.fits && product.fits.length) {
