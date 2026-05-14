@@ -1442,7 +1442,6 @@
             <article class="product-card" data-category="jackets" data-name="snappaw growshield coat">
               <div class="product-image has-photo">
                 <img src="images/1.png" alt="Snappaw GrowShield Coat">
-                <span class="product-badge">Best Concept</span>
               </div>
               <div class="product-info">
                 <h3>Snappaw GrowShield Coat</h3>
@@ -1459,7 +1458,6 @@
             <article class="product-card" data-category="jackets" data-name="snappaw growshield cape">
               <div class="product-image has-photo">
                 <img src="images/3.png" alt="Snappaw GrowShield Cape">
-                <span class="product-badge">New</span>
               </div>
               <div class="product-info">
                 <h3>Snappaw GrowShield Cape</h3>
@@ -2190,12 +2188,12 @@
   <script>
     const productDetails = {
       'adaptive-growth-jacket': {
-        badge: 'Adaptive Fit',
+        badge: '',
         eyebrow: 'Snappaw Product',
         name: 'Snappaw GrowShield Coat',
         price: '£48.00',
         image: 'images/1.png',
-        images: ['images/1.png', 'images/2.png'],
+        images: ['images/1.png', 'images/2.png', 'images/b2.png', 'images/b3.png', 'images/growshield-coat-action.jpg'],
         description: 'The hero product is a growth-adjustable puppy coat featuring a waterproof and windproof outer layer, an added cotton lining, a stretch rear panel, adjustable neck fastening, rear elastic fit controls, and a one-handed magnetic buckle around the abdomen.',
         sizes: ['XS', 'S', 'M'],
         colours: [],
@@ -2204,7 +2202,7 @@
         care: 'Gentle machine wash. Air dry recommended.'
       },
       'softshell-puppy-coat': {
-        badge: 'New Arrival',
+        badge: '',
         eyebrow: 'Snappaw Product',
         name: 'Snappaw GrowShield Cape',
         price: '£42.00',
@@ -2350,7 +2348,9 @@
       const product = productDetails[productId];
       if (!product) return;
 
-      document.getElementById('detailBadge').textContent = product.badge;
+      const detailBadge = document.getElementById('detailBadge');
+      detailBadge.textContent = product.badge || '';
+      detailBadge.style.display = product.badge ? '' : 'none';
       document.getElementById('detailEyebrow').textContent = product.eyebrow;
       document.getElementById('detailName').textContent = product.name;
       document.getElementById('detailPrice').innerHTML = product.price;
